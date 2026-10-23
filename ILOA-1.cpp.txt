@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+// Searches for a value in array x
+int search(int *x, int m, int value) {
+    for (int i = 0; i < m; i++) {
+        if (x[i] == value) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+// Checks if arrays x and y have no common values
+bool diff(int *x, int m, int *y, int n) {
+    for (int i = 0; i < n; i++) {
+        if (search(x, m, y[i]) != -1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int main() {
+    int m, n;
+
+    cout << "Enter array size of x: ";
+    cin >> m;
+
+    cout << "Enter array size of y: ";
+    cin >> n;
+
+    int *x = new int[m];
+    int *y = new int[n];
+
+    cout << "Enter elements of array x:\n";
+    for (int i = 0; i < m; i++) {
+        cin >> x[i];
+    }
+
+    cout << "Enter elements of array y:\n";
+    for (int i = 0; i < n; i++) {
+        cin >> y[i];
+    }
+
+    bool result = diff(x, m, y, n);
+
+    if (result) {
+        cout << "The arrays have no common values." << endl;
+    } else {
+        cout << "The arrays have common values." << endl;
+    }
+
+    delete[] x;
+    delete[] y;
+
+    return 0;
+}

@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+// Regular recursive power
+int rpower(int x, int n) {
+    if (n == 0)
+        return 1;
+    else
+        return x * rpower(x, n - 1);
+}
+
+// Binary recursive power
+int brpower(int x, int n) {
+    if (n == 0)
+        return 1;
+
+    if (n % 2 == 1) {
+        int y = brpower(x, (n - 1) / 2);
+        return x * y * y;
+    }
+
+    if (n % 2 == 0) {
+        int y = brpower(x, n / 2);
+        return y * y;
+    }
+
+    return 0;
+}
+
+int main() {
+    int x, n;
+
+    cout << "Enter the value of x: ";
+    cin >> x;
+
+    cout << "Enter the value of n: ";
+    cin >> n;
+
+    cout << "\nRegular Recursive Power: "
+         << rpower(x, n) << endl;
+
+    cout << "Binary Recursive Power: "
+         << brpower(x, n) << endl;
+
+    return 0;
+}
